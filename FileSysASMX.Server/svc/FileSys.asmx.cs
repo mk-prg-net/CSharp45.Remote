@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 
+using System.Xml.Serialization;
+
 using System.IO;
 
 namespace FileSysASMX.Server.svc
@@ -34,6 +36,23 @@ namespace FileSysASMX.Server.svc
 
             return dir;
         }
+
+        [WebMethod]
+        //[XmlInclude(typeof(mko.FileSys.Dir[]))]
+        //[XmlInclude(typeof(mko.FileSys.File[]))]
+        public List<mko.FileSys.FSysItem> GetSubDirItems(string subDir)
+        {
+            var subDirAbs = Path.Combine(BaseDir, subDir);
+            mko.TraceHlp.ThrowArgExIfNot(Directory.Exists(subDirAbs), $"Directory {Path.Combine(BaseDir, subDir)} does not exists");
+
+            var SubDirs = Directory.GetDirectories(subDirAbs).Select(r => new mko.FileSys.Dir(r));
+            var Files = Directory.GetFiles(subDirAbs).Select(r => new mko.FileSys.File(r, new FileInfo(r).Length));
+
+            var list = new List<mko.FileSys.FSysItem>((SubDirs.ToArray<mko.FileSys.FSysItem>().Concat(Files.ToArray<mko.FileSys.FSysItem>())));
+            return list;
+
+        }
+
 
         [WebMethod]
         public mko.FileSys.FileSimple GetFileSimple(string name)

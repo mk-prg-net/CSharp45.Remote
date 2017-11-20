@@ -12,7 +12,8 @@ namespace mko.FileSys
 {
 
     [DataContract]
-    public class Dir : IDir
+    [Serializable]
+    public class Dir : FSysItem, IDir
     {
         public Dir() { }
 
@@ -67,11 +68,5 @@ namespace mko.FileSys
             }
         }
 
-        [DataMember]
-        public string Name
-        {
-            get;
-            set;
-        }
     }
 }

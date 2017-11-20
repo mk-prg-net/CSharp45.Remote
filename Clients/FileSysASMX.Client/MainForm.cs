@@ -19,7 +19,7 @@ namespace FileSysASMX.Client
         }
 
         SVC.FileSysWcfClient svcClient = new SVC.FileSysWcfClient();
-        //SVC.FileSys svcClient = new SVC.FileSys();
+        ASMX.FileSysSoapClient asmxClient = new ASMX.FileSysSoapClient();
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -34,6 +34,11 @@ namespace FileSysASMX.Client
             DirBindingSource.DataSource = dirs.SubDirs;
             FilesBindingSource.DataSource = dirs.Files;
 
+
+            var dirsAsmx = asmxClient.GetSubDirs("Reisen");
+
+            var items = asmxClient.GetSubDirItems("Reisen");
+
             ResumeLayout();
             
              
@@ -46,7 +51,7 @@ namespace FileSysASMX.Client
 
         private void grdDirs_SelectionChanged(object sender, EventArgs e)
         {
-            if (active)
+            if (grdDirs.SelectedRows.Count > 0)
             {
                 var dir = (mko.FileSys.Dir)DirBindingSource.Current;
 
@@ -55,21 +60,11 @@ namespace FileSysASMX.Client
 
                 var dirs = svcClient.GetSubDirs(subDir);
 
-                DirBindingSource.DataSource = dirs.SubDirs;
-                DirBindingSource.ResetBindings(false);
+                //DirBindingSource.DataSource = dirs.SubDirs;
+                //DirBindingSource.ResetBindings(false);
                 FilesBindingSource.DataSource = dirs.Files;
                 FilesBindingSource.ResetBindings(false);
             }
-
-        }
-
-        private void tabControlBaseFormMain_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabControlBaseFormMain_Leave(object sender, EventArgs e)
-        {
 
         }
         bool active = false;

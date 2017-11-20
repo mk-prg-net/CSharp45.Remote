@@ -11,7 +11,7 @@ namespace mko.FileSys
 {
 
     [DataContract]
-    public class File : IFile
+    public class File : FSysItem, IFile
     {
         public File() { }
 
@@ -25,13 +25,6 @@ namespace mko.FileSys
         {
             Name = file.Name;
             SizeInBytes = file.SizeInBytes;
-        }
-
-        [DataMember]
-        public string Name
-        {
-            get;
-            set;
         }
 
         [DataMember]

@@ -45,8 +45,10 @@
     <Compile Include="Dir.cs" />
     <Compile Include="File.cs" />
     <Compile Include="FileSimple.cs" />
+    <Compile Include="FSysItem.cs" />
     <Compile Include="IDir.cs" />
     <Compile Include="IFile.cs" />
+    <Compile Include="IName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

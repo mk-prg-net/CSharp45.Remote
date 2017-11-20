@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.grdFiles = new System.Windows.Forms.DataGridView();
             this.grdDirs = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DirBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.grdFiles = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FilesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControlBaseFormMain.SuspendLayout();
@@ -44,16 +44,11 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDirs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DirBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FilesBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tabControlBaseFormMain
-            // 
-            this.tabControlBaseFormMain.Enter += new System.EventHandler(this.tabControlBaseFormMain_Enter);
-            this.tabControlBaseFormMain.Leave += new System.EventHandler(this.tabControlBaseFormMain_Leave);
             // 
             // tabPageBaseForm1
             // 
@@ -75,19 +70,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(831, 382);
             this.splitContainer1.SplitterDistance = 277;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // grdFiles
-            // 
-            this.grdFiles.AutoGenerateColumns = false;
-            this.grdFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn});
-            this.grdFiles.DataSource = this.FilesBindingSource;
-            this.grdFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdFiles.Location = new System.Drawing.Point(0, 0);
-            this.grdFiles.Name = "grdFiles";
-            this.grdFiles.Size = new System.Drawing.Size(550, 382);
-            this.grdFiles.TabIndex = 0;
             // 
             // grdDirs
             // 
@@ -116,6 +98,19 @@
             this.DirBindingSource.DataSource = typeof(mko.FileSys.IDir);
             this.DirBindingSource.CurrentChanged += new System.EventHandler(this.DirBindingSource_CurrentChanged);
             // 
+            // grdFiles
+            // 
+            this.grdFiles.AutoGenerateColumns = false;
+            this.grdFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn});
+            this.grdFiles.DataSource = this.FilesBindingSource;
+            this.grdFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdFiles.Location = new System.Drawing.Point(0, 0);
+            this.grdFiles.Name = "grdFiles";
+            this.grdFiles.Size = new System.Drawing.Size(550, 382);
+            this.grdFiles.TabIndex = 0;
+            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
@@ -142,9 +137,9 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDirs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DirBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FilesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
