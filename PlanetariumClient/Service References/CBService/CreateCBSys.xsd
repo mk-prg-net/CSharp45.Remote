@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="www.mkoit.de/Kepler" elementFormDefault="qualified" targetNamespace="www.mkoit.de/Kepler" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="CreateCBSysWorkFlowStates">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Start" />
+      <xs:enumeration value="SelectCentralBody" />
+      <xs:enumeration value="SelectSatellite" />
+      <xs:enumeration value="CreateCBSys" />
+      <xs:enumeration value="Fin" />
+      <xs:enumeration value="Cancel" />
+      <xs:enumeration value="Error" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CreateCBSysWorkFlowStates" nillable="true" type="tns:CreateCBSysWorkFlowStates" />
+  <xs:complexType name="CBody">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MassInKg" type="xs:double" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CBody" nillable="true" type="tns:CBody" />
+  <xs:complexType name="CBSys">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CentralBody" nillable="true" type="tns:CBody" />
+      <xs:element minOccurs="0" name="Satellites" nillable="true" type="tns:ArrayOfCBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CBSys" nillable="true" type="tns:CBSys" />
+  <xs:complexType name="ArrayOfCBody">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CBody" nillable="true" type="tns:CBody" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCBody" nillable="true" type="tns:ArrayOfCBody" />
+</xs:schema>

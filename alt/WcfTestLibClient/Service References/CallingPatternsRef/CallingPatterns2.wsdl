@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.mkoit.de/ICallingPatterns" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.mkoit.de/ICallingPatterns" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.mkoit.de/ICallingPatterns/Imports">
+      <xsd:import schemaLocation="http://localhost:9095/CallingPatterns.svc?xsd=xsd0" namespace="http://www.mkoit.de/ICallingPatterns" />
+      <xsd:import schemaLocation="http://localhost:9095/CallingPatterns.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICallingPatterns_DelayedReturn_InputMessage">
+    <wsdl:part name="parameters" element="tns:DelayedReturn" />
+  </wsdl:message>
+  <wsdl:message name="ICallingPatterns_DelayedReturn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DelayedReturnResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICallingPatterns_StartFastAsyncCounter_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartFastAsyncCounter" />
+  </wsdl:message>
+  <wsdl:message name="ICallingPatterns_StopFastAsyncCounter_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopFastAsyncCounter" />
+  </wsdl:message>
+  <wsdl:message name="ICallingPatterns_ResetFastAsyncCounter_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetFastAsyncCounter" />
+  </wsdl:message>
+  <wsdl:message name="ICallingPatterns_GetFastAsyncCounterValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFastAsyncCounterValue" />
+  </wsdl:message>
+  <wsdl:message name="ICallingPatterns_GetFastAsyncCounterValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFastAsyncCounterValueResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="ICallingPatterns">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DelayedReturn">
+      <wsdl:input wsaw:Action="http://www.mkoit.de/ICallingPatterns/ICallingPatterns/DelayedReturn" message="tns:ICallingPatterns_DelayedReturn_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.mkoit.de/ICallingPatterns/ICallingPatterns/DelayedReturnResponse" message="tns:ICallingPatterns_DelayedReturn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartFastAsyncCounter">
+      <wsdl:input wsaw:Action="http://www.mkoit.de/ICallingPatterns/ICallingPatterns/StartFastAsyncCounter" message="tns:ICallingPatterns_StartFastAsyncCounter_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StopFastAsyncCounter">
+      <wsdl:input wsaw:Action="http://www.mkoit.de/ICallingPatterns/ICallingPatterns/StopFastAsyncCounter" message="tns:ICallingPatterns_StopFastAsyncCounter_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ResetFastAsyncCounter">
+      <wsdl:input wsaw:Action="http://www.mkoit.de/ICallingPatterns/ICallingPatterns/ResetFastAsyncCounter" message="tns:ICallingPatterns_ResetFastAsyncCounter_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetFastAsyncCounterValue">
+      <wsdl:input wsaw:Action="http://www.mkoit.de/ICallingPatterns/ICallingPatterns/GetFastAsyncCounterValue" message="tns:ICallingPatterns_GetFastAsyncCounterValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.mkoit.de/ICallingPatterns/ICallingPatterns/GetFastAsyncCounterValueResponse" message="tns:ICallingPatterns_GetFastAsyncCounterValue_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

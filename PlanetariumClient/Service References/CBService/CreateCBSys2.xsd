@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9095/CreateCBSys.svc?xsd=xsd2" namespace="www.mkoit.de/Kepler" />
+  <xs:element name="Begin">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BeginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="www.mkoit.de/Kepler" minOccurs="0" name="BeginResult" type="q1:CreateCBSysWorkFlowStates" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Cancel">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="www.mkoit.de/Kepler" minOccurs="0" name="CancelResult" type="q2:CreateCBSysWorkFlowStates" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Reset">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="www.mkoit.de/Kepler" minOccurs="0" name="ResetResult" type="q3:CreateCBSysWorkFlowStates" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetCentralBody">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="www.mkoit.de/Kepler" minOccurs="0" name="CentralBody" nillable="true" type="q4:CBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetCentralBodyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="www.mkoit.de/Kepler" minOccurs="0" name="SetCentralBodyResult" type="q5:CreateCBSysWorkFlowStates" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSatellite">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="www.mkoit.de/Kepler" minOccurs="0" name="Satellite" nillable="true" type="q6:CBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSatelliteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="www.mkoit.de/Kepler" minOccurs="0" name="SetSatelliteResult" type="q7:CreateCBSysWorkFlowStates" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetLastSatelliteEnd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="www.mkoit.de/Kepler" minOccurs="0" name="Satellite" nillable="true" type="q8:CBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetLastSatelliteEndResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="www.mkoit.de/Kepler" minOccurs="0" name="SetLastSatelliteEndResult" type="q9:CreateCBSysWorkFlowStates" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCBSys">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCBSysResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="www.mkoit.de/Kepler" minOccurs="0" name="CreateCBSysResult" type="q10:CreateCBSysWorkFlowStates" />
+        <xs:element xmlns:q11="www.mkoit.de/Kepler" minOccurs="0" name="NewCBSys" nillable="true" type="q11:CBSys" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

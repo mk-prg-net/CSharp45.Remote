@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8dfde64639a4aeba1f8ecfb83733be3" Name="Diagram1" ZoomLevel="112">
+        <EntityTypeShape EntityType="KeplerBIModel.Applications" Width="1.5" PointX="0.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.Asteroids" Width="1.5" PointX="0.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.BigBangs" Width="1.5" PointX="0.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.CelestialBodyBases" Width="1.5" PointX="3.125" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.CelesticalBodySystems" Width="1.5" PointX="6.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.Comets" Width="1.5" PointX="0.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.Countries" Width="1.5" PointX="5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.Galaxies" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.GalaxyCores" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.MannedSpacecraft" Width="1.5" PointX="2.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.Moons" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.NCBs" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.Orbits" Width="1.5" PointX="6.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.Planets" Width="1.5" PointX="7.375" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.SpaceShip" Width="1.5" PointX="2.625" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.SpaceshipTasks" Width="1.5" PointX="0.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerBIModel.Stars" Width="1.5" PointX="2.625" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_SpaceshipTasks_dbo_Applications_Application_ApplicationID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_Asteroids_dbo_NCBs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_BigBangs_dbo_NCBs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_CelesticalBodySystems_dbo_CelestialBodyBases_CentralBody_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_NCBs_dbo_CelestialBodyBases_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_Orbits_dbo_CelestialBodyBases_Satellite_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_SpaceShip_dbo_CelestialBodyBases_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_Orbits_dbo_CelesticalBodySystems_CelesticalBodySystem_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_Comets_dbo_NCBs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_SpaceShip_dbo_Countries_Homeland_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_Galaxies_dbo_NCBs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_GalaxyCores_dbo_NCBs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_MannedSpacecraft_dbo_SpaceShip_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_Moons_dbo_NCBs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_Planets_dbo_NCBs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_Stars_dbo_NCBs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerBIModel.FK_dbo_SpaceshipTasks_dbo_SpaceShip_SpaceShip_ID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

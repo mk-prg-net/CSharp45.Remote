@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DataStreams" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IDataStreams_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256>
+                </sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict>
+                </sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import namespace="http://www.mkoit.de/DataStreams/Filedescriptor" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDataStreams_Upload_InputMessage">
+    <wsdl:part name="parameters" element="tns:Upload" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_Upload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_DownloadData_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadData" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_DownloadData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_DownstreamData_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownstreamData" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_DownstreamData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownstreamDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_GetFileDescriptor_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileDescriptor" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_GetFileDescriptor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileDescriptorResponse" />
+  </wsdl:message>
+  <wsdl:message name="FileNameParamMessage">
+    <wsdl:part xmlns:q1="http://www.mkoit.de/DataStreams/Filedescriptor" name="parameters" element="q1:FileNameParamMessage" />
+  </wsdl:message>
+  <wsdl:message name="FiledescriptorMessage">
+    <wsdl:part xmlns:q2="http://www.mkoit.de/DataStreams/Filedescriptor" name="parameters" element="q2:FiledescriptorMessage" />
+  </wsdl:message>
+  <wsdl:message name="FiledescriptorMessage_Headers">
+    <wsdl:part name="UploadDirName" element="tns:UploadDirName" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_GetAllFileDescriptors_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFileDescriptors" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_GetAllFileDescriptors_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFileDescriptorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_GetAllFileDescriptors_AdminsOnly_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFileDescriptors_AdminsOnly" />
+  </wsdl:message>
+  <wsdl:message name="IDataStreams_GetAllFileDescriptors_AdminsOnly_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFileDescriptors_AdminsOnlyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDataStreams">
+    <wsdl:operation name="Upload">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataStreams/Upload" message="tns:IDataStreams_Upload_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataStreams/UploadResponse" message="tns:IDataStreams_Upload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataStreams/DownloadData" message="tns:IDataStreams_DownloadData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataStreams/DownloadDataResponse" message="tns:IDataStreams_DownloadData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownstreamData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataStreams/DownstreamData" message="tns:IDataStreams_DownstreamData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataStreams/DownstreamDataResponse" message="tns:IDataStreams_DownstreamData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileDescriptor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataStreams/GetFileDescriptor" message="tns:IDataStreams_GetFileDescriptor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataStreams/GetFileDescriptorResponse" message="tns:IDataStreams_GetFileDescriptor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileDescriptorMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataStreams/GetFileDescriptorMessage" name="FileNameParamMessage" message="tns:FileNameParamMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataStreams/GetFileDescriptorMessageResponse" name="FiledescriptorMessage" message="tns:FiledescriptorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFileDescriptors">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataStreams/GetAllFileDescriptors" message="tns:IDataStreams_GetAllFileDescriptors_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataStreams/GetAllFileDescriptorsResponse" message="tns:IDataStreams_GetAllFileDescriptors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFileDescriptors_AdminsOnly">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataStreams/GetAllFileDescriptors_AdminsOnly" message="tns:IDataStreams_GetAllFileDescriptors_AdminsOnly_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataStreams/GetAllFileDescriptors_AdminsOnlyResponse" message="tns:IDataStreams_GetAllFileDescriptors_AdminsOnly_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IDataStreams" type="tns:IDataStreams">
+    <wsp:PolicyReference URI="#NetTcpBinding_IDataStreams_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Upload">
+      <soap12:operation soapAction="http://tempuri.org/IDataStreams/Upload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadData">
+      <soap12:operation soapAction="http://tempuri.org/IDataStreams/DownloadData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownstreamData">
+      <soap12:operation soapAction="http://tempuri.org/IDataStreams/DownstreamData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileDescriptor">
+      <soap12:operation soapAction="http://tempuri.org/IDataStreams/GetFileDescriptor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileDescriptorMessage">
+      <soap12:operation soapAction="http://tempuri.org/IDataStreams/GetFileDescriptorMessage" style="document" />
+      <wsdl:input name="FileNameParamMessage">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="FiledescriptorMessage">
+        <soap12:header message="tns:FiledescriptorMessage_Headers" part="UploadDirName" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFileDescriptors">
+      <soap12:operation soapAction="http://tempuri.org/IDataStreams/GetAllFileDescriptors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFileDescriptors_AdminsOnly">
+      <soap12:operation soapAction="http://tempuri.org/IDataStreams/GetAllFileDescriptors_AdminsOnly" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataStreams">
+    <wsdl:port name="NetTcpBinding_IDataStreams" binding="tns:NetTcpBinding_IDataStreams">
+      <soap12:address location="net.tcp://localhost:9096/DataStreams" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:9096/DataStreams</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>tracs13\Martin</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D865A28B-D51B-4398-A58C-2B5E95D2D767}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WcfTestLibClient</RootNamespace>
+    <AssemblyName>WcfTestLibClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mko, Version=7.1.5.0, Culture=neutral, PublicKeyToken=f4d93f46e53e0656, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mko.7.1.5.0\lib\net45\mko.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFormClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormClient.Designer.cs">
+      <DependentUpon>MainFormClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CallingPatternsRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CreationPatternPerCall\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CreationPatternPerSession\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CreationPatternSingle\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DataSetServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DataStreamsRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\FileFeaturesDbDataServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.datasvcmap</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFormClient.resx">
+      <DependentUpon>MainFormClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config.mit-https-security" />
+    <None Include="app.config.ori" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\WcfDataSetLib.DsFilesDb.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\CallingPatternsRef\CallingPatterns2.wsdl" />
+    <None Include="Service References\CallingPatternsRef\CallingPatterns2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CallingPatternsRef\CallingPatterns21.wsdl" />
+    <None Include="Service References\CallingPatternsRef\CallingPatterns21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CreationPatternPerCall\CreationPatternPerCall.wsdl" />
+    <None Include="Service References\CreationPatternPerCall\CreationPatternPerCall.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CreationPatternPerCall\CreationPatternPerCall1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CreationPatternPerSession\CreationPatternPerSession.wsdl" />
+    <None Include="Service References\CreationPatternPerSession\CreationPatternPerSession.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CreationPatternPerSession\CreationPatternPerSession1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CreationPatternSingle\CreationPatternSingle.wsdl" />
+    <None Include="Service References\CreationPatternSingle\CreationPatternSingle.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CreationPatternSingle\CreationPatternSingle1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataSetServiceRef\DsFilesDb1.xsd" />
+    <None Include="Service References\DataSetServiceRef\FilesDbDataSetService1.wsdl" />
+    <None Include="Service References\DataSetServiceRef\FilesDbDataSetServices3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataSetServiceRef\FilesDbDataSetServices31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataSetServiceRef\FilesDbDataSetServices32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataStreamsRef\Filedescriptor.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataStreamsRef\Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataStreamsRef\service.wsdl" />
+    <None Include="Service References\DataStreamsRef\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataStreamsRef\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataStreamsRef\WcfTestLibClient.DataStreamsRef.Filedescriptor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FileFeaturesDbDataServiceRef\service.edmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WcfDataSetLib\WcfDataSetLib.csproj">
+      <Project>{DC862028-B35B-4BAF-8569-AC1B6B7DE278}</Project>
+      <Name>WcfDataSetLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WcfTestLib\WcfTestLib.csproj">
+      <Project>{ac8ede58-eaf0-46a4-8da5-77afd331d934}</Project>
+      <Name>WcfTestLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinFormTemplate\WinFormTemplate.csproj">
+      <Project>{7773815E-1890-4D94-A6D4-793387D17647}</Project>
+      <Name>WinFormTemplate</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CallingPatternsRef\" />
+    <WCFMetadataStorage Include="Service References\CreationPatternPerCall\" />
+    <WCFMetadataStorage Include="Service References\CreationPatternPerSession\" />
+    <WCFMetadataStorage Include="Service References\CreationPatternSingle\" />
+    <WCFMetadataStorage Include="Service References\DataSetServiceRef\" />
+    <WCFMetadataStorage Include="Service References\DataStreamsRef\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CallingPatternsRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CallingPatternsRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CallingPatternsRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ServiceReferenceMetadataStorage Include="Service References\FileFeaturesDbDataServiceRef\">
+      <Type>datasvcmap</Type>
+    </ServiceReferenceMetadataStorage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FileFeaturesDbDataServiceRef\Reference.datasvcmap">
+      <Generator>DataServiceClientGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataSetServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataSetServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataSetServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CallingPatternsRef\CallingPatterns1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataSetServiceRef\FilesDbDataSetServices1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataStreamsRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataStreamsRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DataStreamsRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternPerCall\CreationPatternPerCall.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternPerCall\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternPerCall\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternPerCall\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternPerSession\CreationPatternPerSession.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternPerSession\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternPerSession\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternPerSession\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternSingle\CreationPatternSingle.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternSingle\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternSingle\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreationPatternSingle\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

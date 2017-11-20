@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="WcfTestLibClient.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IDataStreams" closeTimeout="00:01:00"
+                    openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                    allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard"
+                    maxBufferSize="65536" maxBufferPoolSize="524288" maxReceivedMessageSize="100000000"
+                    messageEncoding="Mtom" textEncoding="utf-8" transferMode="Buffered"
+                    useDefaultWebProxy="true">
+                    <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="100000000"
+                        maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+                    <security mode="TransportCredentialOnly">
+                        <transport clientCredentialType="Basic" proxyCredentialType="Basic"
+                            realm="" />
+                        <message clientCredentialType="UserName" algorithmSuite="Default" />
+                    </security>
+                </binding>
+            </basicHttpBinding>
+            <wsHttpBinding>
+                <binding name="EPwithWsHttpBinding" closeTimeout="00:01:00" openTimeout="00:01:00"
+                    receiveTimeout="00:10:00" sendTimeout="00:01:00" bypassProxyOnLocal="false"
+                    transactionFlow="false" hostNameComparisonMode="StrongWildcard"
+                    maxBufferPoolSize="524288" maxReceivedMessageSize="65536"
+                    messageEncoding="Text" textEncoding="utf-8" useDefaultWebProxy="true"
+                    allowCookies="false">
+                    <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="16384"
+                        maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+                    <reliableSession ordered="true" inactivityTimeout="00:10:00"
+                        enabled="false" />
+                    <security mode="Message">
+                        <transport clientCredentialType="Windows" proxyCredentialType="None"
+                            realm="" />
+                        <message clientCredentialType="Windows" negotiateServiceCredential="true"
+                            algorithmSuite="Default" />
+                    </security>
+                </binding>
+                <binding name="WSHttpBinding_IDataStreams" closeTimeout="00:01:00"
+                    openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                    bypassProxyOnLocal="false" transactionFlow="false" hostNameComparisonMode="StrongWildcard"
+                    maxBufferPoolSize="524288" maxReceivedMessageSize="100000000"
+                    messageEncoding="Mtom" textEncoding="utf-8" useDefaultWebProxy="true"
+                    allowCookies="false">
+                    <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="100000000"
+                        maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+                    <reliableSession ordered="true" inactivityTimeout="00:10:00"
+                        enabled="false" />
+                    <security mode="Message">
+                        <transport clientCredentialType="Windows" proxyCredentialType="None"
+                            realm="" />
+                        <message clientCredentialType="Windows" negotiateServiceCredential="true"
+                            algorithmSuite="Default" />
+                    </security>
+                </binding>
+                <binding name="WSHttpBinding_IDataSetUploadService" closeTimeout="00:01:00"
+                    openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                    bypassProxyOnLocal="false" transactionFlow="false" hostNameComparisonMode="StrongWildcard"
+                    maxBufferPoolSize="524288" maxReceivedMessageSize="100000000"
+                    messageEncoding="Text" textEncoding="utf-8" useDefaultWebProxy="true"
+                    allowCookies="false">
+                    <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="100000000"
+                        maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+                    <reliableSession ordered="true" inactivityTimeout="00:10:00"
+                        enabled="false" />
+                    <security mode="Message">
+                        <transport clientCredentialType="Windows" proxyCredentialType="None"
+                            realm="" />
+                        <message clientCredentialType="Windows" negotiateServiceCredential="true"
+                            algorithmSuite="Default" />
+                    </security>
+                </binding>
+            </wsHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost:9090/CallingPatterns.svc"
+                binding="wsHttpBinding" bindingConfiguration="EPwithWsHttpBinding"
+                contract="CallingPatternsRef.ICallingPatterns" name="EPwithWsHttpBinding">
+                <identity>
+                    <userPrincipalName value="tracs13\Martin" />
+                </identity>
+            </endpoint>
+            <endpoint address="http://localhost:9090/FilesDbDataSetServices.svc"
+                binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_IDataSetUploadService"
+                contract="DataSetServiceRef.IDataSetUploadService" name="WSHttpBinding_IDataSetUploadService">
+                <identity>
+                    <userPrincipalName value="Schulungs-PC\Schulung" />
+                </identity>
+            </endpoint>
+            <endpoint address="http://localhost:9093/DataStreams/sec" binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_IDataStreams" contract="DataStreamsRef.IDataStreams"
+                name="BasicHttpBinding_IDataStreams" />
+            <endpoint address="http://localhost:9093/DataStreams" binding="wsHttpBinding"
+                bindingConfiguration="WSHttpBinding_IDataStreams" contract="DataStreamsRef.IDataStreams"
+                name="WSHttpBinding_IDataStreams">
+                <identity>
+                    <userPrincipalName value="Schulungs-PC\Schulung" />
+                </identity>
+            </endpoint>
+        </client>
+    </system.serviceModel>
+    <applicationSettings>
+        <WcfTestLibClient.Properties.Settings>
+            <setting name="Downloadverzeichnis" serializeAs="String">
+                <value>c:\temp\download</value>
+            </setting>
+        </WcfTestLibClient.Properties.Settings>
+    </applicationSettings>
+</configuration>

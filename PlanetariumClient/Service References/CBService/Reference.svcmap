@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e274c794-8ee8-4d6e-bf47-2d2359ef2757" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9095/CreateCBSys.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CreateCBSys.disco" MetadataType="Disco" ID="ed0ee139-480c-47f3-98ae-676e4c321246" SourceId="1" SourceUrl="http://localhost:9095/CreateCBSys.svc?disco" />
+    <MetadataFile FileName="CreateCBSys.xsd" MetadataType="Schema" ID="66d91ffb-ac62-47d0-a2b5-d475a6548669" SourceId="1" SourceUrl="http://localhost:9095/CreateCBSys.svc?xsd=xsd2" />
+    <MetadataFile FileName="CreateCBSys1.xsd" MetadataType="Schema" ID="9d5fca56-d75f-488c-b92d-7d617945ebfe" SourceId="1" SourceUrl="http://localhost:9095/CreateCBSys.svc?xsd=xsd1" />
+    <MetadataFile FileName="CreateCBSys2.xsd" MetadataType="Schema" ID="dc0c01ae-906d-4663-9d07-cc07108620cc" SourceId="1" SourceUrl="http://localhost:9095/CreateCBSys.svc?xsd=xsd0" />
+    <MetadataFile FileName="CreateCBSys.wsdl" MetadataType="Wsdl" ID="fbecc42d-f503-41bb-add4-6f4fb63aac31" SourceId="1" SourceUrl="http://localhost:9095/CreateCBSys.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

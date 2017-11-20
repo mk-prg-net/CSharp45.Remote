@@ -1,0 +1,1047 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KeplerBIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Asteroids">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Albedo" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BigBangs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CelestialBodyBases">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CelesticalBodySystems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CentralBody_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Comets">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ISO_3166_1_Key" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Galaxies">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GalaxyCores">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MannedSpacecraft">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="CrewSize" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moons">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NCBs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="MassInEarthmasses" Type="float" Nullable="false" />
+          <Property Name="MeanSurfaceTemp" Type="float" Nullable="false" />
+          <Property Name="GravityInMeterPerSec" Type="float" Nullable="false" />
+          <Property Name="PolarDiameterInKilometer" Type="float" Nullable="false" />
+          <Property Name="EquatorialDiameterInKilometer" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orbits">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SemiMajorAxisInKilometer" Type="float" Nullable="false" />
+          <Property Name="MeanVelocitiOfCirculationInKmPerSec" Type="float" Nullable="false" />
+          <Property Name="Satellite_ID" Type="int" />
+          <Property Name="CelesticalBodySystem_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Planets">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpaceShip">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Homeland_ID" Type="int" />
+          <Property Name="MassInKg" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpaceshipTasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Application_ApplicationID" Type="int" />
+          <Property Name="SpaceShip_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Stars">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="SpectralClass" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Asteroids_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Asteroids" Type="Self.Asteroids" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Asteroids">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BigBangs_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="BigBangs" Type="Self.BigBangs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BigBangs">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CelesticalBodySystems_dbo_CelestialBodyBases_CentralBody_ID">
+          <End Role="CelestialBodyBases" Type="Self.CelestialBodyBases" Multiplicity="0..1" />
+          <End Role="CelesticalBodySystems" Type="Self.CelesticalBodySystems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CelestialBodyBases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CelesticalBodySystems">
+              <PropertyRef Name="CentralBody_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Comets_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Comets" Type="Self.Comets" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comets">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Galaxies_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Galaxies" Type="Self.Galaxies" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Galaxies">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_GalaxyCores_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="GalaxyCores" Type="Self.GalaxyCores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GalaxyCores">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MannedSpacecraft_dbo_SpaceShip_ID">
+          <End Role="SpaceShip" Type="Self.SpaceShip" Multiplicity="1" />
+          <End Role="MannedSpacecraft" Type="Self.MannedSpacecraft" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceShip">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MannedSpacecraft">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Moons_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Moons" Type="Self.Moons" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Moons">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NCBs_dbo_CelestialBodyBases_ID">
+          <End Role="CelestialBodyBases" Type="Self.CelestialBodyBases" Multiplicity="1" />
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CelestialBodyBases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Orbits_dbo_CelestialBodyBases_Satellite_ID">
+          <End Role="CelestialBodyBases" Type="Self.CelestialBodyBases" Multiplicity="0..1" />
+          <End Role="Orbits" Type="Self.Orbits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CelestialBodyBases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orbits">
+              <PropertyRef Name="Satellite_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Orbits_dbo_CelesticalBodySystems_CelesticalBodySystem_ID">
+          <End Role="CelesticalBodySystems" Type="Self.CelesticalBodySystems" Multiplicity="0..1" />
+          <End Role="Orbits" Type="Self.Orbits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CelesticalBodySystems">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orbits">
+              <PropertyRef Name="CelesticalBodySystem_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Planets_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Planets" Type="Self.Planets" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Planets">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SpaceShip_dbo_CelestialBodyBases_ID">
+          <End Role="CelestialBodyBases" Type="Self.CelestialBodyBases" Multiplicity="1" />
+          <End Role="SpaceShip" Type="Self.SpaceShip" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CelestialBodyBases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SpaceShip">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SpaceShip_dbo_Countries_Homeland_ID">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="SpaceShip" Type="Self.SpaceShip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SpaceShip">
+              <PropertyRef Name="Homeland_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SpaceshipTasks_dbo_Applications_Application_ApplicationID">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="0..1" />
+          <End Role="SpaceshipTasks" Type="Self.SpaceshipTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationID" />
+            </Principal>
+            <Dependent Role="SpaceshipTasks">
+              <PropertyRef Name="Application_ApplicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SpaceshipTasks_dbo_SpaceShip_SpaceShip_ID">
+          <End Role="SpaceShip" Type="Self.SpaceShip" Multiplicity="0..1" />
+          <End Role="SpaceshipTasks" Type="Self.SpaceshipTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceShip">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SpaceshipTasks">
+              <PropertyRef Name="SpaceShip_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Stars_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Stars" Type="Self.Stars" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Stars">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KeplerBIModelStoreContainer">
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asteroids" EntityType="Self.Asteroids" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BigBangs" EntityType="Self.BigBangs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CelestialBodyBases" EntityType="Self.CelestialBodyBases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CelesticalBodySystems" EntityType="Self.CelesticalBodySystems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comets" EntityType="Self.Comets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Galaxies" EntityType="Self.Galaxies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GalaxyCores" EntityType="Self.GalaxyCores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MannedSpacecraft" EntityType="Self.MannedSpacecraft" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moons" EntityType="Self.Moons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NCBs" EntityType="Self.NCBs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orbits" EntityType="Self.Orbits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Planets" EntityType="Self.Planets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpaceShip" EntityType="Self.SpaceShip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpaceshipTasks" EntityType="Self.SpaceshipTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stars" EntityType="Self.Stars" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Asteroids_dbo_NCBs_ID" Association="Self.FK_dbo_Asteroids_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Asteroids" EntitySet="Asteroids" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BigBangs_dbo_NCBs_ID" Association="Self.FK_dbo_BigBangs_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="BigBangs" EntitySet="BigBangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CelesticalBodySystems_dbo_CelestialBodyBases_CentralBody_ID" Association="Self.FK_dbo_CelesticalBodySystems_dbo_CelestialBodyBases_CentralBody_ID">
+            <End Role="CelestialBodyBases" EntitySet="CelestialBodyBases" />
+            <End Role="CelesticalBodySystems" EntitySet="CelesticalBodySystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Comets_dbo_NCBs_ID" Association="Self.FK_dbo_Comets_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Comets" EntitySet="Comets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Galaxies_dbo_NCBs_ID" Association="Self.FK_dbo_Galaxies_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Galaxies" EntitySet="Galaxies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GalaxyCores_dbo_NCBs_ID" Association="Self.FK_dbo_GalaxyCores_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="GalaxyCores" EntitySet="GalaxyCores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MannedSpacecraft_dbo_SpaceShip_ID" Association="Self.FK_dbo_MannedSpacecraft_dbo_SpaceShip_ID">
+            <End Role="SpaceShip" EntitySet="SpaceShip" />
+            <End Role="MannedSpacecraft" EntitySet="MannedSpacecraft" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Moons_dbo_NCBs_ID" Association="Self.FK_dbo_Moons_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Moons" EntitySet="Moons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NCBs_dbo_CelestialBodyBases_ID" Association="Self.FK_dbo_NCBs_dbo_CelestialBodyBases_ID">
+            <End Role="CelestialBodyBases" EntitySet="CelestialBodyBases" />
+            <End Role="NCBs" EntitySet="NCBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Orbits_dbo_CelestialBodyBases_Satellite_ID" Association="Self.FK_dbo_Orbits_dbo_CelestialBodyBases_Satellite_ID">
+            <End Role="CelestialBodyBases" EntitySet="CelestialBodyBases" />
+            <End Role="Orbits" EntitySet="Orbits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Orbits_dbo_CelesticalBodySystems_CelesticalBodySystem_ID" Association="Self.FK_dbo_Orbits_dbo_CelesticalBodySystems_CelesticalBodySystem_ID">
+            <End Role="CelesticalBodySystems" EntitySet="CelesticalBodySystems" />
+            <End Role="Orbits" EntitySet="Orbits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Planets_dbo_NCBs_ID" Association="Self.FK_dbo_Planets_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Planets" EntitySet="Planets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SpaceShip_dbo_CelestialBodyBases_ID" Association="Self.FK_dbo_SpaceShip_dbo_CelestialBodyBases_ID">
+            <End Role="CelestialBodyBases" EntitySet="CelestialBodyBases" />
+            <End Role="SpaceShip" EntitySet="SpaceShip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SpaceShip_dbo_Countries_Homeland_ID" Association="Self.FK_dbo_SpaceShip_dbo_Countries_Homeland_ID">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="SpaceShip" EntitySet="SpaceShip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SpaceshipTasks_dbo_Applications_Application_ApplicationID" Association="Self.FK_dbo_SpaceshipTasks_dbo_Applications_Application_ApplicationID">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="SpaceshipTasks" EntitySet="SpaceshipTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SpaceshipTasks_dbo_SpaceShip_SpaceShip_ID" Association="Self.FK_dbo_SpaceshipTasks_dbo_SpaceShip_SpaceShip_ID">
+            <End Role="SpaceShip" EntitySet="SpaceShip" />
+            <End Role="SpaceshipTasks" EntitySet="SpaceshipTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Stars_dbo_NCBs_ID" Association="Self.FK_dbo_Stars_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Stars" EntitySet="Stars" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KeplerBIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SpaceshipTasks" Relationship="Self.FK_dbo_SpaceshipTasks_dbo_Applications_Application_ApplicationID" FromRole="Applications" ToRole="SpaceshipTasks" />
+        </EntityType>
+        <EntityType Name="Asteroids">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Albedo" Type="Double" Nullable="false" />
+          <NavigationProperty Name="NCBs" Relationship="Self.FK_dbo_Asteroids_dbo_NCBs_ID" FromRole="Asteroids" ToRole="NCBs" />
+        </EntityType>
+        <EntityType Name="BigBangs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NCBs" Relationship="Self.FK_dbo_BigBangs_dbo_NCBs_ID" FromRole="BigBangs" ToRole="NCBs" />
+        </EntityType>
+        <EntityType Name="CelestialBodyBases">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CelesticalBodySystems" Relationship="Self.FK_dbo_CelesticalBodySystems_dbo_CelestialBodyBases_CentralBody_ID" FromRole="CelestialBodyBases" ToRole="CelesticalBodySystems" />
+          <NavigationProperty Name="NCBs" Relationship="Self.FK_dbo_NCBs_dbo_CelestialBodyBases_ID" FromRole="CelestialBodyBases" ToRole="NCBs" />
+          <NavigationProperty Name="Orbits" Relationship="Self.FK_dbo_Orbits_dbo_CelestialBodyBases_Satellite_ID" FromRole="CelestialBodyBases" ToRole="Orbits" />
+          <NavigationProperty Name="SpaceShip" Relationship="Self.FK_dbo_SpaceShip_dbo_CelestialBodyBases_ID" FromRole="CelestialBodyBases" ToRole="SpaceShip" />
+        </EntityType>
+        <EntityType Name="CelesticalBodySystems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CentralBody_ID" Type="Int32" />
+          <NavigationProperty Name="CelestialBodyBases" Relationship="Self.FK_dbo_CelesticalBodySystems_dbo_CelestialBodyBases_CentralBody_ID" FromRole="CelesticalBodySystems" ToRole="CelestialBodyBases" />
+          <NavigationProperty Name="Orbits" Relationship="Self.FK_dbo_Orbits_dbo_CelesticalBodySystems_CelesticalBodySystem_ID" FromRole="CelesticalBodySystems" ToRole="Orbits" />
+        </EntityType>
+        <EntityType Name="Comets">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NCBs" Relationship="Self.FK_dbo_Comets_dbo_NCBs_ID" FromRole="Comets" ToRole="NCBs" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ISO_3166_1_Key" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SpaceShip" Relationship="Self.FK_dbo_SpaceShip_dbo_Countries_Homeland_ID" FromRole="Countries" ToRole="SpaceShip" />
+        </EntityType>
+        <EntityType Name="Galaxies">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NCBs" Relationship="Self.FK_dbo_Galaxies_dbo_NCBs_ID" FromRole="Galaxies" ToRole="NCBs" />
+        </EntityType>
+        <EntityType Name="GalaxyCores">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NCBs" Relationship="Self.FK_dbo_GalaxyCores_dbo_NCBs_ID" FromRole="GalaxyCores" ToRole="NCBs" />
+        </EntityType>
+        <EntityType Name="MannedSpacecraft">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CrewSize" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SpaceShip" Relationship="Self.FK_dbo_MannedSpacecraft_dbo_SpaceShip_ID" FromRole="MannedSpacecraft" ToRole="SpaceShip" />
+        </EntityType>
+        <EntityType Name="Moons">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NCBs" Relationship="Self.FK_dbo_Moons_dbo_NCBs_ID" FromRole="Moons" ToRole="NCBs" />
+        </EntityType>
+        <EntityType Name="NCBs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="MassInEarthmasses" Type="Double" Nullable="false" />
+          <Property Name="MeanSurfaceTemp" Type="Double" Nullable="false" />
+          <Property Name="GravityInMeterPerSec" Type="Double" Nullable="false" />
+          <Property Name="PolarDiameterInKilometer" Type="Double" Nullable="false" />
+          <Property Name="EquatorialDiameterInKilometer" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Asteroids" Relationship="Self.FK_dbo_Asteroids_dbo_NCBs_ID" FromRole="NCBs" ToRole="Asteroids" />
+          <NavigationProperty Name="BigBangs" Relationship="Self.FK_dbo_BigBangs_dbo_NCBs_ID" FromRole="NCBs" ToRole="BigBangs" />
+          <NavigationProperty Name="CelestialBodyBases" Relationship="Self.FK_dbo_NCBs_dbo_CelestialBodyBases_ID" FromRole="NCBs" ToRole="CelestialBodyBases" />
+          <NavigationProperty Name="Comets" Relationship="Self.FK_dbo_Comets_dbo_NCBs_ID" FromRole="NCBs" ToRole="Comets" />
+          <NavigationProperty Name="Galaxies" Relationship="Self.FK_dbo_Galaxies_dbo_NCBs_ID" FromRole="NCBs" ToRole="Galaxies" />
+          <NavigationProperty Name="GalaxyCores" Relationship="Self.FK_dbo_GalaxyCores_dbo_NCBs_ID" FromRole="NCBs" ToRole="GalaxyCores" />
+          <NavigationProperty Name="Moons" Relationship="Self.FK_dbo_Moons_dbo_NCBs_ID" FromRole="NCBs" ToRole="Moons" />
+          <NavigationProperty Name="Planets" Relationship="Self.FK_dbo_Planets_dbo_NCBs_ID" FromRole="NCBs" ToRole="Planets" />
+          <NavigationProperty Name="Stars" Relationship="Self.FK_dbo_Stars_dbo_NCBs_ID" FromRole="NCBs" ToRole="Stars" />
+        </EntityType>
+        <EntityType Name="Orbits">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SemiMajorAxisInKilometer" Type="Double" Nullable="false" />
+          <Property Name="MeanVelocitiOfCirculationInKmPerSec" Type="Double" Nullable="false" />
+          <Property Name="Satellite_ID" Type="Int32" />
+          <Property Name="CelesticalBodySystem_ID" Type="Int32" />
+          <NavigationProperty Name="CelestialBodyBases" Relationship="Self.FK_dbo_Orbits_dbo_CelestialBodyBases_Satellite_ID" FromRole="Orbits" ToRole="CelestialBodyBases" />
+          <NavigationProperty Name="CelesticalBodySystems" Relationship="Self.FK_dbo_Orbits_dbo_CelesticalBodySystems_CelesticalBodySystem_ID" FromRole="Orbits" ToRole="CelesticalBodySystems" />
+        </EntityType>
+        <EntityType Name="Planets">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NCBs" Relationship="Self.FK_dbo_Planets_dbo_NCBs_ID" FromRole="Planets" ToRole="NCBs" />
+        </EntityType>
+        <EntityType Name="SpaceShip">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Homeland_ID" Type="Int32" />
+          <Property Name="MassInKg" Type="Double" Nullable="false" />
+          <NavigationProperty Name="CelestialBodyBases" Relationship="Self.FK_dbo_SpaceShip_dbo_CelestialBodyBases_ID" FromRole="SpaceShip" ToRole="CelestialBodyBases" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK_dbo_SpaceShip_dbo_Countries_Homeland_ID" FromRole="SpaceShip" ToRole="Countries" />
+          <NavigationProperty Name="MannedSpacecraft" Relationship="Self.FK_dbo_MannedSpacecraft_dbo_SpaceShip_ID" FromRole="SpaceShip" ToRole="MannedSpacecraft" />
+          <NavigationProperty Name="SpaceshipTasks" Relationship="Self.FK_dbo_SpaceshipTasks_dbo_SpaceShip_SpaceShip_ID" FromRole="SpaceShip" ToRole="SpaceshipTasks" />
+        </EntityType>
+        <EntityType Name="SpaceshipTasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Application_ApplicationID" Type="Int32" />
+          <Property Name="SpaceShip_ID" Type="Int32" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK_dbo_SpaceshipTasks_dbo_Applications_Application_ApplicationID" FromRole="SpaceshipTasks" ToRole="Applications" />
+          <NavigationProperty Name="SpaceShip" Relationship="Self.FK_dbo_SpaceshipTasks_dbo_SpaceShip_SpaceShip_ID" FromRole="SpaceshipTasks" ToRole="SpaceShip" />
+        </EntityType>
+        <EntityType Name="Stars">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SpectralClass" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NCBs" Relationship="Self.FK_dbo_Stars_dbo_NCBs_ID" FromRole="Stars" ToRole="NCBs" />
+        </EntityType>
+        <Association Name="FK_dbo_SpaceshipTasks_dbo_Applications_Application_ApplicationID">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="0..1" />
+          <End Role="SpaceshipTasks" Type="Self.SpaceshipTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationID" />
+            </Principal>
+            <Dependent Role="SpaceshipTasks">
+              <PropertyRef Name="Application_ApplicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Asteroids_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Asteroids" Type="Self.Asteroids" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Asteroids">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BigBangs_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="BigBangs" Type="Self.BigBangs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BigBangs">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CelesticalBodySystems_dbo_CelestialBodyBases_CentralBody_ID">
+          <End Role="CelestialBodyBases" Type="Self.CelestialBodyBases" Multiplicity="0..1" />
+          <End Role="CelesticalBodySystems" Type="Self.CelesticalBodySystems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CelestialBodyBases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CelesticalBodySystems">
+              <PropertyRef Name="CentralBody_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NCBs_dbo_CelestialBodyBases_ID">
+          <End Role="CelestialBodyBases" Type="Self.CelestialBodyBases" Multiplicity="1" />
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CelestialBodyBases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Orbits_dbo_CelestialBodyBases_Satellite_ID">
+          <End Role="CelestialBodyBases" Type="Self.CelestialBodyBases" Multiplicity="0..1" />
+          <End Role="Orbits" Type="Self.Orbits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CelestialBodyBases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orbits">
+              <PropertyRef Name="Satellite_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SpaceShip_dbo_CelestialBodyBases_ID">
+          <End Role="CelestialBodyBases" Type="Self.CelestialBodyBases" Multiplicity="1" />
+          <End Role="SpaceShip" Type="Self.SpaceShip" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CelestialBodyBases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SpaceShip">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Orbits_dbo_CelesticalBodySystems_CelesticalBodySystem_ID">
+          <End Role="CelesticalBodySystems" Type="Self.CelesticalBodySystems" Multiplicity="0..1" />
+          <End Role="Orbits" Type="Self.Orbits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CelesticalBodySystems">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orbits">
+              <PropertyRef Name="CelesticalBodySystem_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Comets_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Comets" Type="Self.Comets" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comets">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SpaceShip_dbo_Countries_Homeland_ID">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="SpaceShip" Type="Self.SpaceShip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SpaceShip">
+              <PropertyRef Name="Homeland_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Galaxies_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Galaxies" Type="Self.Galaxies" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Galaxies">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_GalaxyCores_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="GalaxyCores" Type="Self.GalaxyCores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GalaxyCores">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MannedSpacecraft_dbo_SpaceShip_ID">
+          <End Role="SpaceShip" Type="Self.SpaceShip" Multiplicity="1" />
+          <End Role="MannedSpacecraft" Type="Self.MannedSpacecraft" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceShip">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MannedSpacecraft">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Moons_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Moons" Type="Self.Moons" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Moons">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Planets_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Planets" Type="Self.Planets" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Planets">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Stars_dbo_NCBs_ID">
+          <End Role="NCBs" Type="Self.NCBs" Multiplicity="1" />
+          <End Role="Stars" Type="Self.Stars" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NCBs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Stars">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SpaceshipTasks_dbo_SpaceShip_SpaceShip_ID">
+          <End Role="SpaceShip" Type="Self.SpaceShip" Multiplicity="0..1" />
+          <End Role="SpaceshipTasks" Type="Self.SpaceshipTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceShip">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SpaceshipTasks">
+              <PropertyRef Name="SpaceShip_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KeplerBIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applications" EntityType="Self.Applications" />
+          <EntitySet Name="Asteroids" EntityType="Self.Asteroids" />
+          <EntitySet Name="BigBangs" EntityType="Self.BigBangs" />
+          <EntitySet Name="CelestialBodyBases" EntityType="Self.CelestialBodyBases" />
+          <EntitySet Name="CelesticalBodySystems" EntityType="Self.CelesticalBodySystems" />
+          <EntitySet Name="Comets" EntityType="Self.Comets" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" />
+          <EntitySet Name="Galaxies" EntityType="Self.Galaxies" />
+          <EntitySet Name="GalaxyCores" EntityType="Self.GalaxyCores" />
+          <EntitySet Name="MannedSpacecraft" EntityType="Self.MannedSpacecraft" />
+          <EntitySet Name="Moons" EntityType="Self.Moons" />
+          <EntitySet Name="NCBs" EntityType="Self.NCBs" />
+          <EntitySet Name="Orbits" EntityType="Self.Orbits" />
+          <EntitySet Name="Planets" EntityType="Self.Planets" />
+          <EntitySet Name="SpaceShip" EntityType="Self.SpaceShip" />
+          <EntitySet Name="SpaceshipTasks" EntityType="Self.SpaceshipTasks" />
+          <EntitySet Name="Stars" EntityType="Self.Stars" />
+          <AssociationSet Name="FK_dbo_SpaceshipTasks_dbo_Applications_Application_ApplicationID" Association="Self.FK_dbo_SpaceshipTasks_dbo_Applications_Application_ApplicationID">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="SpaceshipTasks" EntitySet="SpaceshipTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Asteroids_dbo_NCBs_ID" Association="Self.FK_dbo_Asteroids_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Asteroids" EntitySet="Asteroids" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BigBangs_dbo_NCBs_ID" Association="Self.FK_dbo_BigBangs_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="BigBangs" EntitySet="BigBangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CelesticalBodySystems_dbo_CelestialBodyBases_CentralBody_ID" Association="Self.FK_dbo_CelesticalBodySystems_dbo_CelestialBodyBases_CentralBody_ID">
+            <End Role="CelestialBodyBases" EntitySet="CelestialBodyBases" />
+            <End Role="CelesticalBodySystems" EntitySet="CelesticalBodySystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NCBs_dbo_CelestialBodyBases_ID" Association="Self.FK_dbo_NCBs_dbo_CelestialBodyBases_ID">
+            <End Role="CelestialBodyBases" EntitySet="CelestialBodyBases" />
+            <End Role="NCBs" EntitySet="NCBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Orbits_dbo_CelestialBodyBases_Satellite_ID" Association="Self.FK_dbo_Orbits_dbo_CelestialBodyBases_Satellite_ID">
+            <End Role="CelestialBodyBases" EntitySet="CelestialBodyBases" />
+            <End Role="Orbits" EntitySet="Orbits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SpaceShip_dbo_CelestialBodyBases_ID" Association="Self.FK_dbo_SpaceShip_dbo_CelestialBodyBases_ID">
+            <End Role="CelestialBodyBases" EntitySet="CelestialBodyBases" />
+            <End Role="SpaceShip" EntitySet="SpaceShip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Orbits_dbo_CelesticalBodySystems_CelesticalBodySystem_ID" Association="Self.FK_dbo_Orbits_dbo_CelesticalBodySystems_CelesticalBodySystem_ID">
+            <End Role="CelesticalBodySystems" EntitySet="CelesticalBodySystems" />
+            <End Role="Orbits" EntitySet="Orbits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Comets_dbo_NCBs_ID" Association="Self.FK_dbo_Comets_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Comets" EntitySet="Comets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SpaceShip_dbo_Countries_Homeland_ID" Association="Self.FK_dbo_SpaceShip_dbo_Countries_Homeland_ID">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="SpaceShip" EntitySet="SpaceShip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Galaxies_dbo_NCBs_ID" Association="Self.FK_dbo_Galaxies_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Galaxies" EntitySet="Galaxies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GalaxyCores_dbo_NCBs_ID" Association="Self.FK_dbo_GalaxyCores_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="GalaxyCores" EntitySet="GalaxyCores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MannedSpacecraft_dbo_SpaceShip_ID" Association="Self.FK_dbo_MannedSpacecraft_dbo_SpaceShip_ID">
+            <End Role="SpaceShip" EntitySet="SpaceShip" />
+            <End Role="MannedSpacecraft" EntitySet="MannedSpacecraft" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Moons_dbo_NCBs_ID" Association="Self.FK_dbo_Moons_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Moons" EntitySet="Moons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Planets_dbo_NCBs_ID" Association="Self.FK_dbo_Planets_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Planets" EntitySet="Planets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Stars_dbo_NCBs_ID" Association="Self.FK_dbo_Stars_dbo_NCBs_ID">
+            <End Role="NCBs" EntitySet="NCBs" />
+            <End Role="Stars" EntitySet="Stars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SpaceshipTasks_dbo_SpaceShip_SpaceShip_ID" Association="Self.FK_dbo_SpaceshipTasks_dbo_SpaceShip_SpaceShip_ID">
+            <End Role="SpaceShip" EntitySet="SpaceShip" />
+            <End Role="SpaceshipTasks" EntitySet="SpaceshipTasks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KeplerBIModelStoreContainer" CdmEntityContainer="KeplerBIEntities">
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="KeplerBIModel.Applications">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asteroids">
+            <EntityTypeMapping TypeName="KeplerBIModel.Asteroids">
+              <MappingFragment StoreEntitySet="Asteroids">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Albedo" ColumnName="Albedo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BigBangs">
+            <EntityTypeMapping TypeName="KeplerBIModel.BigBangs">
+              <MappingFragment StoreEntitySet="BigBangs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CelestialBodyBases">
+            <EntityTypeMapping TypeName="KeplerBIModel.CelestialBodyBases">
+              <MappingFragment StoreEntitySet="CelestialBodyBases">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CelesticalBodySystems">
+            <EntityTypeMapping TypeName="KeplerBIModel.CelesticalBodySystems">
+              <MappingFragment StoreEntitySet="CelesticalBodySystems">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CentralBody_ID" ColumnName="CentralBody_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comets">
+            <EntityTypeMapping TypeName="KeplerBIModel.Comets">
+              <MappingFragment StoreEntitySet="Comets">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="KeplerBIModel.Countries">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ISO_3166_1_Key" ColumnName="ISO_3166_1_Key" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Galaxies">
+            <EntityTypeMapping TypeName="KeplerBIModel.Galaxies">
+              <MappingFragment StoreEntitySet="Galaxies">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GalaxyCores">
+            <EntityTypeMapping TypeName="KeplerBIModel.GalaxyCores">
+              <MappingFragment StoreEntitySet="GalaxyCores">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MannedSpacecraft">
+            <EntityTypeMapping TypeName="KeplerBIModel.MannedSpacecraft">
+              <MappingFragment StoreEntitySet="MannedSpacecraft">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CrewSize" ColumnName="CrewSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moons">
+            <EntityTypeMapping TypeName="KeplerBIModel.Moons">
+              <MappingFragment StoreEntitySet="Moons">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NCBs">
+            <EntityTypeMapping TypeName="KeplerBIModel.NCBs">
+              <MappingFragment StoreEntitySet="NCBs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MassInEarthmasses" ColumnName="MassInEarthmasses" />
+                <ScalarProperty Name="MeanSurfaceTemp" ColumnName="MeanSurfaceTemp" />
+                <ScalarProperty Name="GravityInMeterPerSec" ColumnName="GravityInMeterPerSec" />
+                <ScalarProperty Name="PolarDiameterInKilometer" ColumnName="PolarDiameterInKilometer" />
+                <ScalarProperty Name="EquatorialDiameterInKilometer" ColumnName="EquatorialDiameterInKilometer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orbits">
+            <EntityTypeMapping TypeName="KeplerBIModel.Orbits">
+              <MappingFragment StoreEntitySet="Orbits">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SemiMajorAxisInKilometer" ColumnName="SemiMajorAxisInKilometer" />
+                <ScalarProperty Name="MeanVelocitiOfCirculationInKmPerSec" ColumnName="MeanVelocitiOfCirculationInKmPerSec" />
+                <ScalarProperty Name="Satellite_ID" ColumnName="Satellite_ID" />
+                <ScalarProperty Name="CelesticalBodySystem_ID" ColumnName="CelesticalBodySystem_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Planets">
+            <EntityTypeMapping TypeName="KeplerBIModel.Planets">
+              <MappingFragment StoreEntitySet="Planets">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpaceShip">
+            <EntityTypeMapping TypeName="KeplerBIModel.SpaceShip">
+              <MappingFragment StoreEntitySet="SpaceShip">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Homeland_ID" ColumnName="Homeland_ID" />
+                <ScalarProperty Name="MassInKg" ColumnName="MassInKg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpaceshipTasks">
+            <EntityTypeMapping TypeName="KeplerBIModel.SpaceshipTasks">
+              <MappingFragment StoreEntitySet="SpaceshipTasks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Application_ApplicationID" ColumnName="Application_ApplicationID" />
+                <ScalarProperty Name="SpaceShip_ID" ColumnName="SpaceShip_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stars">
+            <EntityTypeMapping TypeName="KeplerBIModel.Stars">
+              <MappingFragment StoreEntitySet="Stars">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SpectralClass" ColumnName="SpectralClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

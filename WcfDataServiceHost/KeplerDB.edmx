@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KeplerDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="KeplerDBModelStoreContainer">
+          <EntitySet Name="HimmelskoerperTab" EntityType="KeplerDBModel.Store.HimmelskoerperTab" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HimmelskoerperTypenTab" EntityType="KeplerDBModel.Store.HimmelskoerperTypenTab" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LaenderTab" EntityType="KeplerDBModel.Store.LaenderTab" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RaumschiffAufgabenTab" EntityType="KeplerDBModel.Store.RaumschiffAufgabenTab" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RaumschiffeTab" EntityType="KeplerDBModel.Store.RaumschiffeTab" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sterne_Planeten_MondeTab" EntityType="KeplerDBModel.Store.Sterne_Planeten_MondeTab" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UmlaufbahnenTab" EntityType="KeplerDBModel.Store.UmlaufbahnenTab" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UrlSammlungenTab" EntityType="KeplerDBModel.Store.UrlSammlungenTab" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="HimmelskoerperHimmelskoerperTyp" Association="KeplerDBModel.Store.HimmelskoerperHimmelskoerperTyp">
+            <End Role="HimmelskoerperTypenTab" EntitySet="HimmelskoerperTypenTab" />
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+          </AssociationSet>
+          <AssociationSet Name="HimmelskoerperRaumschiffe" Association="KeplerDBModel.Store.HimmelskoerperRaumschiffe">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="RaumschiffeTab" EntitySet="RaumschiffeTab" />
+          </AssociationSet>
+          <AssociationSet Name="HimmelskoerperSterne_Planeten_Monde" Association="KeplerDBModel.Store.HimmelskoerperSterne_Planeten_Monde">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="Sterne_Planeten_MondeTab" EntitySet="Sterne_Planeten_MondeTab" />
+          </AssociationSet>
+          <AssociationSet Name="HimmelskoerperUrlSammlung" Association="KeplerDBModel.Store.HimmelskoerperUrlSammlung">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="UrlSammlungenTab" EntitySet="UrlSammlungenTab" />
+          </AssociationSet>
+          <AssociationSet Name="LandRaumschiffe" Association="KeplerDBModel.Store.LandRaumschiffe">
+            <End Role="LaenderTab" EntitySet="LaenderTab" />
+            <End Role="RaumschiffeTab" EntitySet="RaumschiffeTab" />
+          </AssociationSet>
+          <AssociationSet Name="RaumschiffAufgabenRaumschiffe" Association="KeplerDBModel.Store.RaumschiffAufgabenRaumschiffe">
+            <End Role="RaumschiffAufgabenTab" EntitySet="RaumschiffAufgabenTab" />
+            <End Role="RaumschiffeTab" EntitySet="RaumschiffeTab" />
+          </AssociationSet>
+          <AssociationSet Name="TrabantUmlaufbahn" Association="KeplerDBModel.Store.TrabantUmlaufbahn">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="UmlaufbahnenTab" EntitySet="UmlaufbahnenTab" />
+          </AssociationSet>
+          <AssociationSet Name="ZentralobjektUmlaufbahn" Association="KeplerDBModel.Store.ZentralobjektUmlaufbahn">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="UmlaufbahnenTab" EntitySet="UmlaufbahnenTab" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="HimmelskoerperTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Masse_in_kg" Type="float" Nullable="false" />
+          <Property Name="HimmelskoerperTyp_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HimmelskoerperTypenTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LaenderTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Laenderkennzeichen" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RaumschiffAufgabenTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Aufgabenbeschreibung" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RaumschiffeTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Start_der_Mission" Type="datetime" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Himmelskoerper_ID" Type="int" Nullable="false" />
+          <Property Name="Land_ID" Type="int" Nullable="false" />
+          <Property Name="RaumschiffAufgaben_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sterne_Planeten_MondeTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Aequatordurchmesser_in_km" Type="float" Nullable="false" />
+          <Property Name="Polardurchmesser_in_km" Type="float" Nullable="false" />
+          <Property Name="Oberflaechentemperatur_in_K" Type="float" Nullable="false" />
+          <Property Name="Rotationsperiode_in_Stunden" Type="float" Nullable="false" />
+          <Property Name="Fallbeschleunigung_in_meter_pro_sec" Type="float" Nullable="false" />
+          <Property Name="Rotationsachsenneigung_in_Grad" Type="float" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Himmelskoerper_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UmlaufbahnenTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Laenge_grosse_Halbachse_in_km" Type="float" Nullable="false" />
+          <Property Name="Exzentritzitaet" Type="float" Nullable="false" />
+          <Property Name="Umlaufdauer_in_Tagen" Type="float" Nullable="false" />
+          <Property Name="Mittlere_Umlaufgeschwindigkeit_in_km_pro_sec" Type="float" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Trabant_ID" Type="int" Nullable="false" />
+          <Property Name="Zentralobjekt_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UrlSammlungenTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Kurzbeschreibung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UrlTyp" Type="int" Nullable="false" />
+          <Property Name="Himmelskoerper_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="HimmelskoerperHimmelskoerperTyp">
+          <End Role="HimmelskoerperTypenTab" Type="KeplerDBModel.Store.HimmelskoerperTypenTab" Multiplicity="1" />
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.Store.HimmelskoerperTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTypenTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HimmelskoerperTab">
+              <PropertyRef Name="HimmelskoerperTyp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HimmelskoerperRaumschiffe">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.Store.HimmelskoerperTab" Multiplicity="1" />
+          <End Role="RaumschiffeTab" Type="KeplerDBModel.Store.RaumschiffeTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RaumschiffeTab">
+              <PropertyRef Name="Himmelskoerper_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HimmelskoerperSterne_Planeten_Monde">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.Store.HimmelskoerperTab" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sterne_Planeten_MondeTab" Type="KeplerDBModel.Store.Sterne_Planeten_MondeTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sterne_Planeten_MondeTab">
+              <PropertyRef Name="Himmelskoerper_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HimmelskoerperUrlSammlung">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.Store.HimmelskoerperTab" Multiplicity="1" />
+          <End Role="UrlSammlungenTab" Type="KeplerDBModel.Store.UrlSammlungenTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UrlSammlungenTab">
+              <PropertyRef Name="Himmelskoerper_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LandRaumschiffe">
+          <End Role="LaenderTab" Type="KeplerDBModel.Store.LaenderTab" Multiplicity="1" />
+          <End Role="RaumschiffeTab" Type="KeplerDBModel.Store.RaumschiffeTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LaenderTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RaumschiffeTab">
+              <PropertyRef Name="Land_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RaumschiffAufgabenRaumschiffe">
+          <End Role="RaumschiffAufgabenTab" Type="KeplerDBModel.Store.RaumschiffAufgabenTab" Multiplicity="1" />
+          <End Role="RaumschiffeTab" Type="KeplerDBModel.Store.RaumschiffeTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaumschiffAufgabenTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RaumschiffeTab">
+              <PropertyRef Name="RaumschiffAufgaben_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TrabantUmlaufbahn">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.Store.HimmelskoerperTab" Multiplicity="1" />
+          <End Role="UmlaufbahnenTab" Type="KeplerDBModel.Store.UmlaufbahnenTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UmlaufbahnenTab">
+              <PropertyRef Name="Trabant_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZentralobjektUmlaufbahn">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.Store.HimmelskoerperTab" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UmlaufbahnenTab" Type="KeplerDBModel.Store.UmlaufbahnenTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UmlaufbahnenTab">
+              <PropertyRef Name="Zentralobjekt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KeplerDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KeplerDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="HimmelskoerperTab" EntityType="KeplerDBModel.HimmelskoerperTab" />
+          <EntitySet Name="HimmelskoerperTypenTab" EntityType="KeplerDBModel.HimmelskoerperTypenTab" />
+          <EntitySet Name="LaenderTab" EntityType="KeplerDBModel.LaenderTab" />
+          <EntitySet Name="RaumschiffAufgabenTab" EntityType="KeplerDBModel.RaumschiffAufgabenTab" />
+          <EntitySet Name="RaumschiffeTab" EntityType="KeplerDBModel.RaumschiffeTab" />
+          <EntitySet Name="Sterne_Planeten_MondeTab" EntityType="KeplerDBModel.Sterne_Planeten_MondeTab" />
+          <EntitySet Name="UmlaufbahnenTab" EntityType="KeplerDBModel.UmlaufbahnenTab" />
+          <EntitySet Name="UrlSammlungenTab" EntityType="KeplerDBModel.UrlSammlungenTab" />
+          <AssociationSet Name="HimmelskoerperHimmelskoerperTyp" Association="KeplerDBModel.HimmelskoerperHimmelskoerperTyp">
+            <End Role="HimmelskoerperTypenTab" EntitySet="HimmelskoerperTypenTab" />
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+          </AssociationSet>
+          <AssociationSet Name="HimmelskoerperRaumschiffe" Association="KeplerDBModel.HimmelskoerperRaumschiffe">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="RaumschiffeTab" EntitySet="RaumschiffeTab" />
+          </AssociationSet>
+          <AssociationSet Name="HimmelskoerperSterne_Planeten_Monde" Association="KeplerDBModel.HimmelskoerperSterne_Planeten_Monde">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="Sterne_Planeten_MondeTab" EntitySet="Sterne_Planeten_MondeTab" />
+          </AssociationSet>
+          <AssociationSet Name="HimmelskoerperUrlSammlung" Association="KeplerDBModel.HimmelskoerperUrlSammlung">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="UrlSammlungenTab" EntitySet="UrlSammlungenTab" />
+          </AssociationSet>
+          <AssociationSet Name="TrabantUmlaufbahn" Association="KeplerDBModel.TrabantUmlaufbahn">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="UmlaufbahnenTab" EntitySet="UmlaufbahnenTab" />
+          </AssociationSet>
+          <AssociationSet Name="ZentralobjektUmlaufbahn" Association="KeplerDBModel.ZentralobjektUmlaufbahn">
+            <End Role="HimmelskoerperTab" EntitySet="HimmelskoerperTab" />
+            <End Role="UmlaufbahnenTab" EntitySet="UmlaufbahnenTab" />
+          </AssociationSet>
+          <AssociationSet Name="LandRaumschiffe" Association="KeplerDBModel.LandRaumschiffe">
+            <End Role="LaenderTab" EntitySet="LaenderTab" />
+            <End Role="RaumschiffeTab" EntitySet="RaumschiffeTab" />
+          </AssociationSet>
+          <AssociationSet Name="RaumschiffAufgabenRaumschiffe" Association="KeplerDBModel.RaumschiffAufgabenRaumschiffe">
+            <End Role="RaumschiffAufgabenTab" EntitySet="RaumschiffAufgabenTab" />
+            <End Role="RaumschiffeTab" EntitySet="RaumschiffeTab" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="HimmelskoerperTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Masse_in_kg" Type="Double" Nullable="false" />
+          <Property Name="HimmelskoerperTyp_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HimmelskoerperTypenTab" Relationship="KeplerDBModel.HimmelskoerperHimmelskoerperTyp" FromRole="HimmelskoerperTab" ToRole="HimmelskoerperTypenTab" />
+          <NavigationProperty Name="RaumschiffeTab" Relationship="KeplerDBModel.HimmelskoerperRaumschiffe" FromRole="HimmelskoerperTab" ToRole="RaumschiffeTab" />
+          <NavigationProperty Name="Sterne_Planeten_MondeTab" Relationship="KeplerDBModel.HimmelskoerperSterne_Planeten_Monde" FromRole="HimmelskoerperTab" ToRole="Sterne_Planeten_MondeTab" />
+          <NavigationProperty Name="UrlSammlungenTab" Relationship="KeplerDBModel.HimmelskoerperUrlSammlung" FromRole="HimmelskoerperTab" ToRole="UrlSammlungenTab" />
+          <NavigationProperty Name="UmlaufbahnenTab" Relationship="KeplerDBModel.TrabantUmlaufbahn" FromRole="HimmelskoerperTab" ToRole="UmlaufbahnenTab" />
+          <NavigationProperty Name="UmlaufbahnenTab1" Relationship="KeplerDBModel.ZentralobjektUmlaufbahn" FromRole="HimmelskoerperTab" ToRole="UmlaufbahnenTab" />
+        </EntityType>
+        <EntityType Name="HimmelskoerperTypenTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="HimmelskoerperTab" Relationship="KeplerDBModel.HimmelskoerperHimmelskoerperTyp" FromRole="HimmelskoerperTypenTab" ToRole="HimmelskoerperTab" />
+        </EntityType>
+        <EntityType Name="LaenderTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Laenderkennzeichen" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RaumschiffeTab" Relationship="KeplerDBModel.LandRaumschiffe" FromRole="LaenderTab" ToRole="RaumschiffeTab" />
+        </EntityType>
+        <EntityType Name="RaumschiffAufgabenTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Aufgabenbeschreibung" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RaumschiffeTab" Relationship="KeplerDBModel.RaumschiffAufgabenRaumschiffe" FromRole="RaumschiffAufgabenTab" ToRole="RaumschiffeTab" />
+        </EntityType>
+        <EntityType Name="RaumschiffeTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Start_der_Mission" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Himmelskoerper_ID" Type="Int32" Nullable="false" />
+          <Property Name="Land_ID" Type="Int32" Nullable="false" />
+          <Property Name="RaumschiffAufgaben_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HimmelskoerperTab" Relationship="KeplerDBModel.HimmelskoerperRaumschiffe" FromRole="RaumschiffeTab" ToRole="HimmelskoerperTab" />
+          <NavigationProperty Name="LaenderTab" Relationship="KeplerDBModel.LandRaumschiffe" FromRole="RaumschiffeTab" ToRole="LaenderTab" />
+          <NavigationProperty Name="RaumschiffAufgabenTab" Relationship="KeplerDBModel.RaumschiffAufgabenRaumschiffe" FromRole="RaumschiffeTab" ToRole="RaumschiffAufgabenTab" />
+        </EntityType>
+        <EntityType Name="Sterne_Planeten_MondeTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Aequatordurchmesser_in_km" Type="Double" Nullable="false" />
+          <Property Name="Polardurchmesser_in_km" Type="Double" Nullable="false" />
+          <Property Name="Oberflaechentemperatur_in_K" Type="Double" Nullable="false" />
+          <Property Name="Rotationsperiode_in_Stunden" Type="Double" Nullable="false" />
+          <Property Name="Fallbeschleunigung_in_meter_pro_sec" Type="Double" Nullable="false" />
+          <Property Name="Rotationsachsenneigung_in_Grad" Type="Double" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Himmelskoerper_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HimmelskoerperTab" Relationship="KeplerDBModel.HimmelskoerperSterne_Planeten_Monde" FromRole="Sterne_Planeten_MondeTab" ToRole="HimmelskoerperTab" />
+        </EntityType>
+        <EntityType Name="UmlaufbahnenTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Laenge_grosse_Halbachse_in_km" Type="Double" Nullable="false" />
+          <Property Name="Exzentritzitaet" Type="Double" Nullable="false" />
+          <Property Name="Umlaufdauer_in_Tagen" Type="Double" Nullable="false" />
+          <Property Name="Mittlere_Umlaufgeschwindigkeit_in_km_pro_sec" Type="Double" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Trabant_ID" Type="Int32" Nullable="false" />
+          <Property Name="Zentralobjekt_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HimmelskoerperTab" Relationship="KeplerDBModel.TrabantUmlaufbahn" FromRole="UmlaufbahnenTab" ToRole="HimmelskoerperTab" />
+          <NavigationProperty Name="HimmelskoerperTab1" Relationship="KeplerDBModel.ZentralobjektUmlaufbahn" FromRole="UmlaufbahnenTab" ToRole="HimmelskoerperTab" />
+        </EntityType>
+        <EntityType Name="UrlSammlungenTab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Kurzbeschreibung" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UrlTyp" Type="Int32" Nullable="false" />
+          <Property Name="Himmelskoerper_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HimmelskoerperTab" Relationship="KeplerDBModel.HimmelskoerperUrlSammlung" FromRole="UrlSammlungenTab" ToRole="HimmelskoerperTab" />
+        </EntityType>
+        <Association Name="HimmelskoerperHimmelskoerperTyp">
+          <End Role="HimmelskoerperTypenTab" Type="KeplerDBModel.HimmelskoerperTypenTab" Multiplicity="1" />
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.HimmelskoerperTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTypenTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HimmelskoerperTab">
+              <PropertyRef Name="HimmelskoerperTyp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HimmelskoerperRaumschiffe">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.HimmelskoerperTab" Multiplicity="1" />
+          <End Role="RaumschiffeTab" Type="KeplerDBModel.RaumschiffeTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RaumschiffeTab">
+              <PropertyRef Name="Himmelskoerper_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HimmelskoerperSterne_Planeten_Monde">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.HimmelskoerperTab" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sterne_Planeten_MondeTab" Type="KeplerDBModel.Sterne_Planeten_MondeTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sterne_Planeten_MondeTab">
+              <PropertyRef Name="Himmelskoerper_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HimmelskoerperUrlSammlung">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.HimmelskoerperTab" Multiplicity="1" />
+          <End Role="UrlSammlungenTab" Type="KeplerDBModel.UrlSammlungenTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UrlSammlungenTab">
+              <PropertyRef Name="Himmelskoerper_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TrabantUmlaufbahn">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.HimmelskoerperTab" Multiplicity="1" />
+          <End Role="UmlaufbahnenTab" Type="KeplerDBModel.UmlaufbahnenTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UmlaufbahnenTab">
+              <PropertyRef Name="Trabant_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZentralobjektUmlaufbahn">
+          <End Role="HimmelskoerperTab" Type="KeplerDBModel.HimmelskoerperTab" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UmlaufbahnenTab" Type="KeplerDBModel.UmlaufbahnenTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HimmelskoerperTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UmlaufbahnenTab">
+              <PropertyRef Name="Zentralobjekt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LandRaumschiffe">
+          <End Role="LaenderTab" Type="KeplerDBModel.LaenderTab" Multiplicity="1" />
+          <End Role="RaumschiffeTab" Type="KeplerDBModel.RaumschiffeTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LaenderTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RaumschiffeTab">
+              <PropertyRef Name="Land_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RaumschiffAufgabenRaumschiffe">
+          <End Role="RaumschiffAufgabenTab" Type="KeplerDBModel.RaumschiffAufgabenTab" Multiplicity="1" />
+          <End Role="RaumschiffeTab" Type="KeplerDBModel.RaumschiffeTab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaumschiffAufgabenTab">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RaumschiffeTab">
+              <PropertyRef Name="RaumschiffAufgaben_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KeplerDBModelStoreContainer" CdmEntityContainer="KeplerDBEntities">
+          <EntitySetMapping Name="HimmelskoerperTab">
+            <EntityTypeMapping TypeName="KeplerDBModel.HimmelskoerperTab">
+              <MappingFragment StoreEntitySet="HimmelskoerperTab">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Masse_in_kg" ColumnName="Masse_in_kg" />
+                <ScalarProperty Name="HimmelskoerperTyp_ID" ColumnName="HimmelskoerperTyp_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HimmelskoerperTypenTab">
+            <EntityTypeMapping TypeName="KeplerDBModel.HimmelskoerperTypenTab">
+              <MappingFragment StoreEntitySet="HimmelskoerperTypenTab">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LaenderTab">
+            <EntityTypeMapping TypeName="KeplerDBModel.LaenderTab">
+              <MappingFragment StoreEntitySet="LaenderTab">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Laenderkennzeichen" ColumnName="Laenderkennzeichen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaumschiffAufgabenTab">
+            <EntityTypeMapping TypeName="KeplerDBModel.RaumschiffAufgabenTab">
+              <MappingFragment StoreEntitySet="RaumschiffAufgabenTab">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Aufgabenbeschreibung" ColumnName="Aufgabenbeschreibung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaumschiffeTab">
+            <EntityTypeMapping TypeName="KeplerDBModel.RaumschiffeTab">
+              <MappingFragment StoreEntitySet="RaumschiffeTab">
+                <ScalarProperty Name="Start_der_Mission" ColumnName="Start_der_Mission" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Himmelskoerper_ID" ColumnName="Himmelskoerper_ID" />
+                <ScalarProperty Name="Land_ID" ColumnName="Land_ID" />
+                <ScalarProperty Name="RaumschiffAufgaben_ID" ColumnName="RaumschiffAufgaben_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sterne_Planeten_MondeTab">
+            <EntityTypeMapping TypeName="KeplerDBModel.Sterne_Planeten_MondeTab">
+              <MappingFragment StoreEntitySet="Sterne_Planeten_MondeTab">
+                <ScalarProperty Name="Aequatordurchmesser_in_km" ColumnName="Aequatordurchmesser_in_km" />
+                <ScalarProperty Name="Polardurchmesser_in_km" ColumnName="Polardurchmesser_in_km" />
+                <ScalarProperty Name="Oberflaechentemperatur_in_K" ColumnName="Oberflaechentemperatur_in_K" />
+                <ScalarProperty Name="Rotationsperiode_in_Stunden" ColumnName="Rotationsperiode_in_Stunden" />
+                <ScalarProperty Name="Fallbeschleunigung_in_meter_pro_sec" ColumnName="Fallbeschleunigung_in_meter_pro_sec" />
+                <ScalarProperty Name="Rotationsachsenneigung_in_Grad" ColumnName="Rotationsachsenneigung_in_Grad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Himmelskoerper_ID" ColumnName="Himmelskoerper_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UmlaufbahnenTab">
+            <EntityTypeMapping TypeName="KeplerDBModel.UmlaufbahnenTab">
+              <MappingFragment StoreEntitySet="UmlaufbahnenTab">
+                <ScalarProperty Name="Laenge_grosse_Halbachse_in_km" ColumnName="Laenge_grosse_Halbachse_in_km" />
+                <ScalarProperty Name="Exzentritzitaet" ColumnName="Exzentritzitaet" />
+                <ScalarProperty Name="Umlaufdauer_in_Tagen" ColumnName="Umlaufdauer_in_Tagen" />
+                <ScalarProperty Name="Mittlere_Umlaufgeschwindigkeit_in_km_pro_sec" ColumnName="Mittlere_Umlaufgeschwindigkeit_in_km_pro_sec" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Trabant_ID" ColumnName="Trabant_ID" />
+                <ScalarProperty Name="Zentralobjekt_ID" ColumnName="Zentralobjekt_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrlSammlungenTab">
+            <EntityTypeMapping TypeName="KeplerDBModel.UrlSammlungenTab">
+              <MappingFragment StoreEntitySet="UrlSammlungenTab">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Kurzbeschreibung" ColumnName="Kurzbeschreibung" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="UrlTyp" ColumnName="UrlTyp" />
+                <ScalarProperty Name="Himmelskoerper_ID" ColumnName="Himmelskoerper_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

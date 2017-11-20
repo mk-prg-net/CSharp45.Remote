@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<configuration>
+  <system.diagnostics>
+    <sources>
+      <source name="System.ServiceModel.MessageLogging" switchValue="Verbose,ActivityTracing">
+        <listeners>         
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+
+          <add name="NewListener">
+            
+          </add>
+        </listeners>
+      </source>
+    </sources>
+    <sharedListeners>
+      <add initializeData="c:\temp\trace.svclog" type="System.Diagnostics.XmlWriterTraceListener, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+        name="NewListener" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack">
+        <filter type="" />
+      </add>
+    </sharedListeners>
+  </system.diagnostics>
+  <system.serviceModel>
+    <diagnostics>
+      <messageLogging logEntireMessage="true" logMessagesAtServiceLevel="true" />
+    </diagnostics>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="basicHttpBindingWithMTomAndWinSecurity" maxReceivedMessageSize="100000000"
+          messageEncoding="Mtom">
+          <readerQuotas maxArrayLength="100000000" />
+          <security mode="TransportCredentialOnly">
+            <transport clientCredentialType="Basic" proxyCredentialType="Basic" />
+          </security>
+        </binding>
+      </basicHttpBinding>
+      <customBinding>
+        <binding name="CustomNamedPipeBindingWithMtom">
+          <mtomMessageEncoding>
+            <readerQuotas maxArrayLength="100000000" maxBytesPerRead="100000000" />
+          </mtomMessageEncoding>
+          <namedPipeTransport />
+        </binding>
+      </customBinding>
+      <netNamedPipeBinding>
+        <binding name="NamedPipeWithStreaming" transferMode="StreamedResponse"
+          maxReceivedMessageSize="100000000">
+          <readerQuotas maxArrayLength="100000000" maxBytesPerRead="0" />
+        </binding>
+        <binding name="NamedPipeStadard" />
+      </netNamedPipeBinding>
+      <wsHttpBinding>
+        <binding name="wsHttpBindingWithMTOM" maxReceivedMessageSize="100000000"
+          messageEncoding="Mtom">
+          <readerQuotas maxArrayLength="100000000" />
+        </binding>
+        <binding name="wsHttpBindingWithMTomAndWinSecurity" maxReceivedMessageSize="10000000"
+          messageEncoding="Mtom">
+          <readerQuotas maxArrayLength="100000000" />
+          <security mode="Transport">
+            <transport proxyCredentialType="Basic" />
+          </security>
+        </binding>
+      </wsHttpBinding>
+    </bindings>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="NoMetadataBehavior">
+          <serviceDebug includeExceptionDetailInFaults="true" />
+          <serviceMetadata />
+        </behavior>
+        <behavior name="WinAuthenticationAndAuthorization">
+          <serviceDebug includeExceptionDetailInFaults="true" />
+          <serviceMetadata />
+          <serviceCredentials />
+          <serviceAuthorization impersonateCallerForAllOperations="false" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <services>
+      <service behaviorConfiguration="NoMetadataBehavior" name="WcfTestLib.HelloService">
+        <endpoint address="" binding="netNamedPipeBinding" bindingConfiguration=""
+          contract="WcfTestLib.IHelloService" />
+        <endpoint address="mex" binding="mexNamedPipeBinding" bindingConfiguration=""
+          contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="net.pipe://hello" />
+          </baseAddresses>
+        </host>
+      </service>
+      <service behaviorConfiguration="NoMetadataBehavior" name="WcfTestLib.CreationPatternPerCall">
+        <endpoint address="" binding="netNamedPipeBinding" bindingConfiguration=""
+          contract="WcfTestLib.ICreationPatterns" />
+        <endpoint address="mex" binding="mexNamedPipeBinding" bindingConfiguration=""
+          bindingName="" contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="net.pipe://CreationPerCall" />
+          </baseAddresses>
+        </host>
+      </service>
+      <service behaviorConfiguration="NoMetadataBehavior" name="WcfTestLib.CreationPatternPerSession">
+        <endpoint address="" binding="netNamedPipeBinding" bindingConfiguration=""
+          contract="WcfTestLib.ICreationPatterns" />
+        <endpoint address="mex" binding="mexNamedPipeBinding" bindingConfiguration=""
+          bindingName="" contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="net.pipe://CreationPerSession" />
+          </baseAddresses>
+        </host>
+      </service>
+      <service behaviorConfiguration="NoMetadataBehavior" name="WcfTestLib.CreationPatternSingle">
+        <endpoint address="" binding="netNamedPipeBinding" bindingConfiguration=""
+          contract="WcfTestLib.ICreationPatterns" />
+        <endpoint address="mex" binding="mexNamedPipeBinding" bindingConfiguration=""
+          bindingName="" contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="net.pipe://CreationSingle" />
+          </baseAddresses>
+        </host>
+      </service>
+      <service behaviorConfiguration="WinAuthenticationAndAuthorization"
+        name="WcfTestLib.DataStreams">
+        <endpoint address="sec" binding="basicHttpBinding" bindingConfiguration="basicHttpBindingWithMTomAndWinSecurity"
+          name="EPbasicHttpSec" bindingName="" contract="WcfTestLib.IDataStreams" />
+        <endpoint address="mex" binding="mexHttpBinding" bindingConfiguration=""
+          name="EPmexHttp" contract="IMetadataExchange" />
+        <endpoint address="mexs" binding="mexHttpsBinding" bindingConfiguration=""
+          name="EPmexHttps" contract="IMetadataExchange" />
+        <endpoint binding="wsHttpBinding" bindingConfiguration="wsHttpBindingWithMTOM"
+          name="EPwsHttp" contract="WcfTestLib.IDataStreams" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="http://localhost:9093/DataStreams" />
+            <add baseAddress="https://localhost:9094/DataStreams" />
+          </baseAddresses>
+        </host>
+      </service>
+    </services>
+  </system.serviceModel>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+</configuration>

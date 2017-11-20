@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.mkoit.de/DataStreams/Filedescriptor" elementFormDefault="qualified" targetNamespace="http://www.mkoit.de/DataStreams/Filedescriptor" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://tempuri.org/" />
+  <xs:complexType name="Filedescriptor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SizeInKB" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Filedescriptor" nillable="true" type="tns:Filedescriptor" />
+  <xs:element name="FileNameParamMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://tempuri.org/" minOccurs="0" ref="q1:Filename" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FiledescriptorMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://tempuri.org/" minOccurs="0" ref="q2:FileName" />
+        <xs:element xmlns:q3="http://tempuri.org/" minOccurs="0" ref="q3:SizeInKB" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfFiledescriptor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Filedescriptor" nillable="true" type="tns:Filedescriptor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFiledescriptor" nillable="true" type="tns:ArrayOfFiledescriptor" />
+</xs:schema>

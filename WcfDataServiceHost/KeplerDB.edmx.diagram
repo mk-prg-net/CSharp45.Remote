@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8539d88e419e489eb386b4a9c1d43fa2" Name="Diagramm1" ZoomLevel="91">
+        <EntityTypeShape EntityType="KeplerDBModel.HimmelskoerperTab" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerDBModel.HimmelskoerperTypenTab" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerDBModel.LaenderTab" Width="1.5" PointX="7" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerDBModel.RaumschiffAufgabenTab" Width="1.5" PointX="7" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerDBModel.RaumschiffeTab" Width="1.5" PointX="4.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerDBModel.Sterne_Planeten_MondeTab" Width="1.5" PointX="2.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerDBModel.UmlaufbahnenTab" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KeplerDBModel.UrlSammlungenTab" Width="1.5" PointX="0.5" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="KeplerDBModel.HimmelskoerperHimmelskoerperTyp" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerDBModel.HimmelskoerperRaumschiffe" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerDBModel.HimmelskoerperSterne_Planeten_Monde" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerDBModel.HimmelskoerperUrlSammlung" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerDBModel.TrabantUmlaufbahn" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerDBModel.ZentralobjektUmlaufbahn" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerDBModel.LandRaumschiffe" ManuallyRouted="false" />
+        <AssociationConnector Association="KeplerDBModel.RaumschiffAufgabenRaumschiffe" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
