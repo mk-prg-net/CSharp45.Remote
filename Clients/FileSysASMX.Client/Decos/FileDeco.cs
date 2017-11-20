@@ -21,7 +21,7 @@ namespace FileSysASMX.Client.Decos
         {
             get
             {
-                return Path.GetDirectoryName(_file.Name);
+                return Path.GetFileName(_file.Name);
             }
         }
 

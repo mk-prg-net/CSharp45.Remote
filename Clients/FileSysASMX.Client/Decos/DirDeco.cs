@@ -22,7 +22,7 @@ namespace FileSysASMX.Client.Decos
         {
             get
             {
-                return Path.GetDirectoryName(_dir.Name);
+                return Path.GetFileName(_dir.Name);
             }
         }
 

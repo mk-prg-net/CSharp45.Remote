@@ -26,13 +26,13 @@ namespace FileSysASMX.Client
             //var file = svcClient..GetFileSimple("xxx");
 
             SuspendLayout();
-            
+
             var dirs = svcClient.GetSubDirs("Reisen");
 
             Debug.Assert(dirs.SubDirs.Count() == dirs.SubDirs_ASMX.Count());
 
-            DirBindingSource.DataSource = dirs.SubDirs;
-            FilesBindingSource.DataSource = dirs.Files;
+            DirBindingSource.DataSource = dirs.SubDirs.Select(r => new Decos.DirDeco(r));
+            FilesBindingSource.DataSource = dirs.Files.Select(r => new Decos.FileDeco(r));
 
 
             var dirsAsmx = asmxClient.GetSubDirs("Reisen");
@@ -40,42 +40,67 @@ namespace FileSysASMX.Client
             var items = asmxClient.GetSubDirItems("Reisen");
 
             ResumeLayout();
-            
-             
+
+
         }
 
         private void DirBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void grdDirs_SelectionChanged(object sender, EventArgs e)
-        {
+        {            
             if (grdDirs.SelectedRows.Count > 0)
             {
-                var dir = (mko.FileSys.Dir)DirBindingSource.Current;
+                if (DirBindingSource.Current != null)
+                {
+                    var dir = (mko.FileSys.IDir)DirBindingSource.Current;
+
+                    var ix = dir.Name.LastIndexOf("Reisen");
+                    var subDir = dir.Name.Substring(ix);
+
+                    var dirs = svcClient.GetSubDirs(subDir);
+
+                    //DirBindingSource.DataSource = dirs.SubDirs;
+                    //DirBindingSource.ResetBindings(false);
+                    FilesBindingSource.DataSource = dirs.Files.Select(r => new Decos.FileDeco(r));
+                    FilesBindingSource.ResetBindings(false);
+                } else
+                {
+                    var dirs = svcClient.GetSubDirs("Reisen");
+
+                    DirBindingSource.DataSource = dirs.SubDirs.Select(r => new Decos.DirDeco(r));
+                    FilesBindingSource.DataSource = dirs.Files.Select(r => new Decos.FileDeco(r));
+
+                }
+            }
+
+        }
+
+        private void grdDirs_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+           
+        }
+
+        private void grdDirs_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var dir = (mko.FileSys.IDir)DirBindingSource.Current;
 
                 var ix = dir.Name.LastIndexOf("Reisen");
                 var subDir = dir.Name.Substring(ix);
 
                 var dirs = svcClient.GetSubDirs(subDir);
 
-                //DirBindingSource.DataSource = dirs.SubDirs;
-                //DirBindingSource.ResetBindings(false);
-                FilesBindingSource.DataSource = dirs.Files;
+                DirBindingSource.DataSource = dirs.SubDirs.Select(r => new Decos.DirDeco(r));
+                DirBindingSource.ResetBindings(false);
+
+                FilesBindingSource.DataSource = dirs.Files.Select(r => new Decos.FileDeco(r));
                 FilesBindingSource.ResetBindings(false);
             }
-
-        }
-        bool active = false;
-        private void grdDirs_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            active = true;
-        }
-
-        private void grdDirs_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            active = false;
         }
     }
 }

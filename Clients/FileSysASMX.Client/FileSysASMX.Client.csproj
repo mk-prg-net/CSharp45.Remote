@@ -98,6 +98,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\FileSysASMX.Client.Decos.DirDeco.datasource" />
+    <None Include="Properties\DataSources\FileSysASMX.Client.Decos.FileDeco.datasource" />
     <None Include="Properties\DataSources\mko.FileSys.Dir.datasource" />
     <None Include="Properties\DataSources\mko.FileSys.IDir.datasource" />
     <None Include="Properties\DataSources\mko.FileSys.IFile.datasource" />

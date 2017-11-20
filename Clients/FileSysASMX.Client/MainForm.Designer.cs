@@ -30,12 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.grdDirs = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DirBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.grdFiles = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SizeInBytes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FilesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.displayNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subDirsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.displayNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sizeInBytesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            grdDirs = new System.Windows.Forms.DataGridView();
+            grdFiles = new System.Windows.Forms.DataGridView();
             this.tabControlBaseFormMain.SuspendLayout();
             this.tabPageBaseFormLogs.SuspendLayout();
             this.tabPageBaseForm1.SuspendLayout();
@@ -44,9 +52,9 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdDirs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(grdDirs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DirBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(grdFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FilesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,64 +70,136 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.grdDirs);
+            this.splitContainer1.Panel1.Controls.Add(grdDirs);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.grdFiles);
+            this.splitContainer1.Panel2.Controls.Add(grdFiles);
             this.splitContainer1.Size = new System.Drawing.Size(831, 382);
             this.splitContainer1.SplitterDistance = 277;
             this.splitContainer1.TabIndex = 0;
             // 
             // grdDirs
             // 
-            this.grdDirs.AutoGenerateColumns = false;
-            this.grdDirs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdDirs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn1});
-            this.grdDirs.DataSource = this.DirBindingSource;
-            this.grdDirs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdDirs.Location = new System.Drawing.Point(0, 0);
-            this.grdDirs.Name = "grdDirs";
-            this.grdDirs.Size = new System.Drawing.Size(277, 382);
-            this.grdDirs.TabIndex = 0;
-            this.grdDirs.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDirs_RowEnter);
-            this.grdDirs.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDirs_RowLeave);
-            this.grdDirs.SelectionChanged += new System.EventHandler(this.grdDirs_SelectionChanged);
+            grdDirs.AllowUserToAddRows = false;
+            grdDirs.AllowUserToDeleteRows = false;
+            grdDirs.AutoGenerateColumns = false;
+            grdDirs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grdDirs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DisplayName,
+            this.displayNameDataGridViewTextBoxColumn,
+            this.filesDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.subDirsDataGridViewTextBoxColumn});
+            grdDirs.DataSource = this.DirBindingSource;
+            grdDirs.Dock = System.Windows.Forms.DockStyle.Fill;
+            grdDirs.Location = new System.Drawing.Point(0, 0);
+            grdDirs.Name = "grdDirs";
+            grdDirs.ReadOnly = true;
+            grdDirs.Size = new System.Drawing.Size(277, 382);
+            grdDirs.TabIndex = 0;
+            grdDirs.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDirs_CellContentDoubleClick);
+            grdDirs.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdDirs_RowHeaderMouseDoubleClick);
+            grdDirs.SelectionChanged += new System.EventHandler(this.grdDirs_SelectionChanged);
             // 
-            // nameDataGridViewTextBoxColumn1
+            // DisplayName
             // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.DisplayName.DataPropertyName = "DisplayName";
+            this.DisplayName.HeaderText = "DisplayName";
+            this.DisplayName.Name = "DisplayName";
+            this.DisplayName.ReadOnly = true;
             // 
             // DirBindingSource
             // 
-            this.DirBindingSource.DataSource = typeof(mko.FileSys.IDir);
+            this.DirBindingSource.DataSource = typeof(FileSysASMX.Client.Decos.DirDeco);
             this.DirBindingSource.CurrentChanged += new System.EventHandler(this.DirBindingSource_CurrentChanged);
             // 
             // grdFiles
             // 
-            this.grdFiles.AutoGenerateColumns = false;
-            this.grdFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn});
-            this.grdFiles.DataSource = this.FilesBindingSource;
-            this.grdFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdFiles.Location = new System.Drawing.Point(0, 0);
-            this.grdFiles.Name = "grdFiles";
-            this.grdFiles.Size = new System.Drawing.Size(550, 382);
-            this.grdFiles.TabIndex = 0;
+            grdFiles.AllowUserToAddRows = false;
+            grdFiles.AllowUserToDeleteRows = false;
+            grdFiles.AutoGenerateColumns = false;
+            grdFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grdFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.SizeInBytes,
+            this.displayNameDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1,
+            this.sizeInBytesDataGridViewTextBoxColumn});
+            grdFiles.DataSource = this.FilesBindingSource;
+            grdFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            grdFiles.Location = new System.Drawing.Point(0, 0);
+            grdFiles.Name = "grdFiles";
+            grdFiles.ReadOnly = true;
+            grdFiles.Size = new System.Drawing.Size(550, 382);
+            grdFiles.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "DisplayName";
+            this.dataGridViewTextBoxColumn1.HeaderText = "DisplayName";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // SizeInBytes
+            // 
+            this.SizeInBytes.DataPropertyName = "SizeInBytes";
+            this.SizeInBytes.HeaderText = "SizeInBytes";
+            this.SizeInBytes.Name = "SizeInBytes";
+            this.SizeInBytes.ReadOnly = true;
+            // 
+            // FilesBindingSource
+            // 
+            this.FilesBindingSource.DataSource = typeof(FileSysASMX.Client.Decos.FileDeco);
+            // 
+            // displayNameDataGridViewTextBoxColumn
+            // 
+            this.displayNameDataGridViewTextBoxColumn.DataPropertyName = "DisplayName";
+            this.displayNameDataGridViewTextBoxColumn.HeaderText = "DisplayName";
+            this.displayNameDataGridViewTextBoxColumn.Name = "displayNameDataGridViewTextBoxColumn";
+            this.displayNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // filesDataGridViewTextBoxColumn
+            // 
+            this.filesDataGridViewTextBoxColumn.DataPropertyName = "Files";
+            this.filesDataGridViewTextBoxColumn.HeaderText = "Files";
+            this.filesDataGridViewTextBoxColumn.Name = "filesDataGridViewTextBoxColumn";
+            this.filesDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // FilesBindingSource
+            // subDirsDataGridViewTextBoxColumn
             // 
-            this.FilesBindingSource.DataSource = typeof(mko.FileSys.IFile);
+            this.subDirsDataGridViewTextBoxColumn.DataPropertyName = "SubDirs";
+            this.subDirsDataGridViewTextBoxColumn.HeaderText = "SubDirs";
+            this.subDirsDataGridViewTextBoxColumn.Name = "subDirsDataGridViewTextBoxColumn";
+            this.subDirsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // displayNameDataGridViewTextBoxColumn1
+            // 
+            this.displayNameDataGridViewTextBoxColumn1.DataPropertyName = "DisplayName";
+            this.displayNameDataGridViewTextBoxColumn1.HeaderText = "DisplayName";
+            this.displayNameDataGridViewTextBoxColumn1.Name = "displayNameDataGridViewTextBoxColumn1";
+            this.displayNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // sizeInBytesDataGridViewTextBoxColumn
+            // 
+            this.sizeInBytesDataGridViewTextBoxColumn.DataPropertyName = "SizeInBytes";
+            this.sizeInBytesDataGridViewTextBoxColumn.HeaderText = "SizeInBytes";
+            this.sizeInBytesDataGridViewTextBoxColumn.Name = "sizeInBytesDataGridViewTextBoxColumn";
+            this.sizeInBytesDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -137,9 +217,9 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdDirs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(grdDirs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DirBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(grdFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FilesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -148,12 +228,21 @@
 
         #endregion
 
+        protected System.Windows.Forms.DataGridView grdDirs;
+        protected  System.Windows.Forms.DataGridView grdFiles;
+
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridView grdFiles;
         private System.Windows.Forms.BindingSource DirBindingSource;
-        private System.Windows.Forms.DataGridView grdDirs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource FilesBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SizeInBytes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn displayNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn filesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subDirsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn displayNameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sizeInBytesDataGridViewTextBoxColumn;
     }
 }
